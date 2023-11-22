@@ -1,0 +1,23 @@
+.panelRowLeft {
+    background: linear-gradient(0.25turn, #1aceff, #2ed45c);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-shrink: 1;
+}
+.panelRowRight {
+    background: linear-gradient(0.75turn, #1aceff, #2ed45c);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-shrink: 1;
+}
+
+.previewImg {
+    margin: 0.5em;
+}
+
+button {
+    background: linear-gradient(0.5turn, #06194b, #1edbb6);
+    flex-grow: 1;
+}
