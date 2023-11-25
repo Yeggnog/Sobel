@@ -26,6 +26,7 @@ function LineWidthChip({id, lineColor, BGColor, value, onUpdate}){
         <div id={id} className={styles.chipBody}>
             <div className={styles.chipRow}>
                 <div className={styles.lineWidthSlider}>
+                <label for='lineWidthSlider'>Slider to control the line width of the final image</label><br />
                     <input className={styles.dualSliderOverlay} type='range' id='lineWidthSlider' onChange={onUpdate} value={value} />
                     <span className={styles.dualSliderUnderlay} id='lineWidthDisplay'></span>
                 </div>
