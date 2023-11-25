@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
-import dummyImg from '../assets/debug_img/astr2.png';
-import dummyIcon from '../assets/debug_img/upload_icon.png';
+import closeIcon from '../assets/cancelIcon.png';
+import importIcon from '../assets/uploadIcon.png';
+import pasteIcon from '../assets/pasteIcon.png';
+import confirmIcon from '../assets/confirmIcon.png';
 import styles from './ImportContainer.module.css';
 
-function ImageImportContainer(props) {
-    const [importedImage, setImportedImage] = useState(dummyImg);
+function ImageImportContainer({image, onImport}) {
+    const [importedImage, setImportedImage] = useState(image);
     const handleImport = () => {
-        // TODO: test this once it's hosted in a secure github pages context
-        //getFileFromUser();
+        getFileFromUser();
     }
     const handlePaste = () => {
         getFileFromClipboard();
@@ -17,7 +18,7 @@ function ImageImportContainer(props) {
     }
     const handleConfirm = () => {
         // send the relevant data to the top level here
-        props.onImport(importedImage);
+        onImport(importedImage);
     }
 
     async function getFileFromUser(){
@@ -32,7 +33,6 @@ function ImageImportContainer(props) {
         [chosenFileHandle] = await window.showOpenFilePicker(filePickerOptions);
         if(verifyFilePermission(chosenFileHandle, false)){
             const fileData = await chosenFileHandle.getFile();
-            console.log("got file with name "+chosenFileHandle.name);
             setImportedImage(fileData);
         }
     }
@@ -64,13 +64,13 @@ function ImageImportContainer(props) {
         <dialog id='importModal'>
             <div className={styles.panelRowLeft}>
                 <button id='import' onClick={handleImport}>
-                    <img src={dummyIcon} alt='Button to import an image from your computer' />
+                    <img src={importIcon} className={styles.icon} alt='Button to import an image from your computer' />
                 </button>
                 <button id='paste' onClick={handlePaste}>
-                    <img src={dummyIcon} alt='Button to paste an image from the clipboard' />
+                    <img src={pasteIcon} className={styles.icon} alt='Button to paste an image from the clipboard' />
                 </button>
                 <button id='cancel' onClick={handleClose}>
-                    <img src={dummyIcon} alt='Button to cancel the import' />
+                    <img src={closeIcon} className={styles.icon} alt='Button to cancel the import' />
                 </button>
             </div>
 
@@ -78,7 +78,7 @@ function ImageImportContainer(props) {
 
             <div className={styles.panelRowRight}>
                 <button id='confirm' onClick={handleConfirm}>
-                    <img src={dummyIcon} alt='Button to confirm the import' />
+                    <img src={confirmIcon} className={styles.icon} alt='Button to confirm the import' />
                 </button>
             </div>
         </dialog>
